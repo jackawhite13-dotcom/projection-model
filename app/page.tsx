@@ -52,7 +52,7 @@ export default function ProjectionModel() {
               Projection Model
             </h1>
             <p className="text-sm text-[var(--color-subtle-gray)]">
-              Break-even traffic calculator
+              SEO traffic projection tool
             </p>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function ProjectionModel() {
           >
             <h2 className="text-lg font-semibold text-[var(--color-near-black)]">Inputs</h2>
             <p className="mt-1 text-sm text-[var(--color-subtle-gray)]">
-              Enter the values from the sales conversation.
+              Enter your investment details and conversion rates.
             </p>
 
             <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -118,10 +118,10 @@ export default function ProjectionModel() {
               style={{ background: "white", border: "1px solid var(--color-border)" }}
             >
               <h2 className="text-lg font-semibold text-[var(--color-near-black)]">
-                Break-Even Model
+                Traffic Projection
               </h2>
               <p className="mt-1 text-sm text-[var(--color-subtle-gray)]">
-                Working backward from investment to required organic traffic.
+                The organic traffic needed to generate a return on your SEO investment.
               </p>
 
               <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -387,7 +387,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.015,
     keyEventRange: [0.15, 0.20, 0.30],
     sessionRange: [0.015, 0.020, 0.028],
-    notes: "FPS: 1.1–1.9% session CVR. Funnel: 39% L→MQL, 38% MQL→SQL, 37% opp→close.",
+    notes: "Trial or demo request → paid subscription. Longer sales cycles with multiple touchpoints.",
   },
   {
     industry: "B2B Prof. Services",
@@ -395,7 +395,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.025,
     keyEventRange: [0.15, 0.25, 0.35],
     sessionRange: [0.025, 0.035, 0.050],
-    notes: "Ruler: 5.0% (highest). FPS: 28% win rate, 51-day cycle. HubSpot: 10–15% close.",
+    notes: "Contact form or consultation request → signed engagement. Relationship-driven close.",
   },
   {
     industry: "E-commerce",
@@ -403,7 +403,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.015,
     keyEventRange: [0.35, 0.45, 0.55],
     sessionRange: [0.015, 0.022, 0.035],
-    notes: "SpeedComm: 1.99% avg. FPS: 1.6% B2C SEO. Cart→purchase ~45–55%.",
+    notes: "Add-to-cart → completed purchase. Higher intent, lower touch than B2B.",
   },
   {
     industry: "Healthcare / Medical",
@@ -411,7 +411,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.020,
     keyEventRange: [0.55, 0.65, 0.75],
     sessionRange: [0.020, 0.027, 0.035],
-    notes: "FPS: 2.4% visitor→prospect. Prospect→patient 56–76% by specialty.",
+    notes: "Appointment request → patient visit. High close rate once a lead is generated.",
   },
   {
     industry: "Legal Services",
@@ -419,7 +419,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.030,
     keyEventRange: [0.25, 0.35, 0.45],
     sessionRange: [0.030, 0.050, 0.075],
-    notes: "FPS: 7.4% (highest). Ruler: 3.0%. Consult→retained: 30–50%.",
+    notes: "Free consultation request → retained client. Strong organic intent in legal search.",
   },
   {
     industry: "Financial Services",
@@ -427,7 +427,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.018,
     keyEventRange: [0.15, 0.22, 0.30],
     sessionRange: [0.018, 0.022, 0.030],
-    notes: "FPS: 1.9% B2B, 2.4% B2C. Ruler: 2.2%. Salesforce: ~19% win rate.",
+    notes: "Application or inquiry → funded account. High scrutiny, compliance-heavy funnel.",
   },
   {
     industry: "Real Estate",
@@ -435,7 +435,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.020,
     keyEventRange: [0.02, 0.04, 0.08],
     sessionRange: [0.020, 0.025, 0.032],
-    notes: "FPS: 2.7%. NAR: 0.4–1.2% lead→close. Long cycle, phone-dominant.",
+    notes: "Inquiry → closed transaction. Very long sales cycle, phone-dominant conversion.",
   },
   {
     industry: "Home Services",
@@ -443,7 +443,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.025,
     keyEventRange: [0.35, 0.45, 0.60],
     sessionRange: [0.025, 0.035, 0.050],
-    notes: "FPS: HVAC 3.1%. WebFX: 7.8% industry-wide. Strong phone conversion.",
+    notes: "Quote request → booked job. Strong local intent, phone calls are a major channel.",
   },
   {
     industry: "Education / EdTech",
@@ -451,7 +451,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.020,
     keyEventRange: [0.18, 0.25, 0.35],
     sessionRange: [0.020, 0.028, 0.040],
-    notes: "FPS: 2.8% higher ed. Applicant→enrolled ~20%. EdTech trial→paid ~25%.",
+    notes: "Application or trial signup → enrolled student or paying user.",
   },
   {
     industry: "Travel / Hospitality",
@@ -459,7 +459,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.012,
     keyEventRange: [0.40, 0.50, 0.60],
     sessionRange: [0.012, 0.018, 0.025],
-    notes: "Ruler: 1.7%. RoomStay: 1.55% organic. Booking.com: 3.2% overall.",
+    notes: "Booking start → completed reservation. High comparison shopping lowers session CVR.",
   },
   {
     industry: "Manufacturing / Industrial",
@@ -467,7 +467,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.020,
     keyEventRange: [0.12, 0.18, 0.25],
     sessionRange: [0.020, 0.027, 0.040],
-    notes: "Ruler: 4.4% (2nd highest). FPS: 2.2%. SEO leads close 14.6% (HubSpot).",
+    notes: "RFQ or contact form → purchase order. Long procurement cycles, multiple stakeholders.",
   },
   {
     industry: "Nonprofit",
@@ -475,7 +475,7 @@ const BENCHMARK_DATA: {
     sessionCVR: 0.005,
     keyEventRange: [0.10, 0.15, 0.22],
     sessionRange: [0.005, 0.010, 0.020],
-    notes: "M+R: 0.16% visitor→donor. Donation page CVR: 11–17%. Organic: 17% of traffic.",
+    notes: "Donation page visit → completed donation. Lower top-of-funnel conversion than commercial.",
   },
 ];
 
@@ -483,12 +483,12 @@ type BenchmarkTier = 0 | 1 | 2;
 const TIER_LABELS: Record<BenchmarkTier, string> = {
   0: "Conservative",
   1: "Standard",
-  2: "Aggressive",
+  2: "Optimistic",
 };
 const TIER_DESCRIPTIONS: Record<BenchmarkTier, string> = {
-  0: "Low end of researched range. Safe for setting client expectations.",
-  1: "Median / typical performer across sources.",
-  2: "Top-quartile performers. Use only for high-maturity sites.",
+  0: "Lower end of industry range. A realistic starting point for projections.",
+  1: "Typical performance across the industry.",
+  2: "What strong performers in this space tend to achieve.",
 };
 
 function Benchmarks({
@@ -528,7 +528,7 @@ function Benchmarks({
               Industry Benchmark Conversion Rates — Organic Search
             </p>
             <p className="text-xs text-[var(--color-subtle-gray)] mt-0.5">
-              Sourced from FirstPageSage, Ruler Analytics, M+R Benchmarks, HubSpot, Salesforce, Databox, and Unbounce (2022–2026 data).
+              Based on aggregated industry data from multiple research sources.
             </p>
 
             {/* Tier Selector */}
@@ -560,7 +560,7 @@ function Benchmarks({
                   <th className="text-left px-4 py-2 text-xs font-semibold text-[var(--color-near-black)]">Industry</th>
                   <th className="text-center px-4 py-2 text-xs font-semibold text-[var(--color-near-black)]">Session → Key Event</th>
                   <th className="text-center px-4 py-2 text-xs font-semibold text-[var(--color-near-black)]">Key Event → Customer</th>
-                  <th className="text-left px-4 py-2 text-xs font-semibold text-[var(--color-near-black)]">Source Notes</th>
+                  <th className="text-left px-4 py-2 text-xs font-semibold text-[var(--color-near-black)]">Context</th>
                   <th className="px-4 py-2"></th>
                 </tr>
               </thead>
