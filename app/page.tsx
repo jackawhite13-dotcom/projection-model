@@ -103,6 +103,12 @@ export default function ProjectionModel() {
                 max={100}
               />
             </div>
+
+            {/* Industry Benchmarks */}
+            <Benchmarks
+              onApplyKeyEvent={(v) => setKeyEventCVR(v)}
+              onApplySession={(v) => setSessionCVR(v)}
+            />
           </section>
 
           {/* Results */}
@@ -345,5 +351,118 @@ function Arrow() {
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
     </svg>
+  );
+}
+
+/* ─── Industry Benchmarks ─── */
+
+const BENCHMARK_DATA: {
+  industry: string;
+  keyEventCVR: number;
+  sessionCVR: number;
+  notes: string;
+}[] = [
+  { industry: "B2B SaaS", keyEventCVR: 0.39, sessionCVR: 0.026, notes: "Trial/demo → paid. Longer sales cycles." },
+  { industry: "B2B Services", keyEventCVR: 0.45, sessionCVR: 0.034, notes: "Lead form → closed deal. Relationship-driven." },
+  { industry: "E-commerce", keyEventCVR: 0.65, sessionCVR: 0.031, notes: "Add-to-cart → purchase. Higher intent, lower touch." },
+  { industry: "Healthcare / Medical", keyEventCVR: 0.50, sessionCVR: 0.032, notes: "Form fill → appointment booked." },
+  { industry: "Legal Services", keyEventCVR: 0.42, sessionCVR: 0.029, notes: "Consultation request → retained client." },
+  { industry: "Financial Services", keyEventCVR: 0.35, sessionCVR: 0.025, notes: "Application → funded account. High scrutiny." },
+  { industry: "Real Estate", keyEventCVR: 0.40, sessionCVR: 0.024, notes: "Inquiry → closed transaction. Long cycle." },
+  { industry: "Home Services", keyEventCVR: 0.55, sessionCVR: 0.042, notes: "Quote request → job booked. High local intent." },
+  { industry: "Education / EdTech", keyEventCVR: 0.48, sessionCVR: 0.035, notes: "Application/enrollment → paying student." },
+  { industry: "Travel / Hospitality", keyEventCVR: 0.60, sessionCVR: 0.028, notes: "Booking start → completed reservation." },
+  { industry: "Manufacturing / Industrial", keyEventCVR: 0.38, sessionCVR: 0.022, notes: "RFQ → purchase order. Long procurement." },
+  { industry: "Nonprofit", keyEventCVR: 0.55, sessionCVR: 0.020, notes: "Donation page → completed donation." },
+];
+
+function Benchmarks({
+  onApplyKeyEvent,
+  onApplySession,
+}: {
+  onApplyKeyEvent: (v: number) => void;
+  onApplySession: (v: number) => void;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="mt-5">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-2 text-sm font-medium transition-colors"
+        style={{ color: "var(--color-subtle-gray)" }}
+      >
+        <svg
+          className="h-4 w-4 transition-transform"
+          style={{ transform: open ? "rotate(90deg)" : "rotate(0deg)" }}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+        Don&apos;t have conversion rates? See industry benchmarks
+      </button>
+
+      {open && (
+        <div className="mt-3 rounded-lg overflow-hidden fade-in" style={{ border: "1px solid var(--color-border)" }}>
+          <div className="px-4 py-3" style={{ background: "var(--color-lavender-light)" }}>
+            <p className="text-xs font-medium text-[var(--color-near-black)]">
+              Industry Benchmark Conversion Rates
+            </p>
+            <p className="text-xs text-[var(--color-subtle-gray)] mt-0.5">
+              These are approximate organic search benchmarks. Click &quot;Use&quot; to apply a row&apos;s rates to your model.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr style={{ background: "var(--color-off-white)" }}>
+                  <th className="text-left px-4 py-2 text-xs font-semibold text-[var(--color-near-black)]">Industry</th>
+                  <th className="text-center px-4 py-2 text-xs font-semibold text-[var(--color-near-black)]">Key Event → Customer</th>
+                  <th className="text-center px-4 py-2 text-xs font-semibold text-[var(--color-near-black)]">Session → Key Event</th>
+                  <th className="text-left px-4 py-2 text-xs font-semibold text-[var(--color-near-black)]">Notes</th>
+                  <th className="px-4 py-2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {BENCHMARK_DATA.map((row) => (
+                  <tr
+                    key={row.industry}
+                    className="transition-colors"
+                    style={{ borderTop: "1px solid var(--color-border)" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(248,214,185,0.15)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
+                  >
+                    <td className="px-4 py-2.5 font-medium text-[var(--color-near-black)]">{row.industry}</td>
+                    <td className="px-4 py-2.5 text-center tabular-nums text-[var(--color-near-black)]">{Math.round(row.keyEventCVR * 100)}%</td>
+                    <td className="px-4 py-2.5 text-center tabular-nums text-[var(--color-near-black)]">{(row.sessionCVR * 100).toFixed(1)}%</td>
+                    <td className="px-4 py-2.5 text-xs text-[var(--color-subtle-gray)]">{row.notes}</td>
+                    <td className="px-4 py-2.5">
+                      <button
+                        onClick={() => {
+                          onApplyKeyEvent(row.keyEventCVR);
+                          onApplySession(row.sessionCVR);
+                        }}
+                        className="rounded-md px-3 py-1 text-xs font-semibold transition-all hover:brightness-[0.97]"
+                        style={{
+                          background: "var(--gradient-brand)",
+                          color: "var(--color-near-black)",
+                          border: "1px solid rgba(232,226,220,0.8)",
+                        }}
+                      >
+                        Use
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
